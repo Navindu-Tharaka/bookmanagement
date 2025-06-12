@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import bookRoutes from '../routes/bookRoutes.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+// const app = express();
+// const PORT = 5000;
+
+// app.get(bodyParser.json());
+// app.get('/api/books', bookRoutes);
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
+
