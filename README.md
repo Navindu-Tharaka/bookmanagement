@@ -10,9 +10,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the server in development mode.\
-By default, the API will be accessible at [http://localhost:3000](http://localhost:3000).
-
+Runs the server in development mode.
 
 ---
 
