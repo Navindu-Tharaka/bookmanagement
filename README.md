@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+#  Hexalyte Book Management API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was built during an internship using **Node.js**, **Express.js**, and **MySQL**. It provides a REST API for managing book records with secure authentication using **JWT** and author name hashing via **bcrypt**.
 
-## Available Scripts
+---
+
+##  Getting Started
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the server in development mode.\
+By default, the API will be accessible at [http://localhost:3000](http://localhost:3000).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##  Project Structure
 
-### `npm run build`
+bookmanagement/
+├── auth/ 
+│ └── tokenValidation.js
+├── config/ 
+│ └── db.js
+├── controllers/ 
+│ └── bookController.js
+├── models/ 
+│ └── Book.js
+├── routes/ 
+│ └── bookRoutes.js
+├── server.js 
+├── .env 
+├── .gitignore
+└── README.md
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##  Available Scripts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Starts the Express server using `server.js`.\
+Listens on the port specified in `.env` (default: `3000`).
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+##  Environment Variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To run this project, create a `.env` file in the root directory and add:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```env
+APP_PORT=3000
+DB_PORT=3306
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+MYSQL_DB=book_management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+##   Authentication & Security
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Authors can log in using their name.
+After logging in at /books/login, a JWT token is issued.
+All book routes are protected and require the token.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+##   Headers (for protected routes):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Authorization: Bearer <your-token>
+code values in books are hashed using bcrypt for security.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##     API Endpoints
 
-### Making a Progressive Web App
+All endpoints are prefixed with /books.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Method	    Route	Description	               Protected
+POST	   /login	Log in and receive token	No
+GET	       /	    Get all books	            Yes
+GET	       /:id	    Get book by ID	            Yes
+POST	   /	    Add a new book	            Yes
+PATCH	   /	    Update a book	            Yes
+DELETE	   /	    Delete a book	            Yes
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Approach & Challenges
+### Approach
 
-### Deployment
+Developed using modular architecture (routes, controllers, models)
+Used mysql2 with connection pooling
+Implemented author name hashing with bcrypt
+Integrated JWT for route protection
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Challenges
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Figuring out how to hash and store code securely
+Learning how JWT authentication works with middleware
+Getting familiar with GitHub pushing workflow
+learning how to work with postman
